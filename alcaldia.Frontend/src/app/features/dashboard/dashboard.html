@@ -1,0 +1,146 @@
+
+<div class="dashboard">
+
+  <div class="page-heading">
+    <div>
+      <h2>Panel de control</h2>
+      <p>Resumen general de los activos tecnológicos de la Alcaldía.</p>
+    </div>
+
+    <button class="btn btn-primary">
+      <i class="bi bi-download me-2"></i>
+      Exportar información
+    </button>
+  </div>
+
+  <!-- INDICADORES -->
+  <div class="row g-3 mb-4">
+
+    <div class="col-xl-3 col-md-6">
+      <div class="stat-card">
+        <div class="stat-icon blue">
+          <i class="bi bi-pc-display"></i>
+        </div>
+        <div>
+          <span>Total de bienes</span>
+          <h3>0</h3>
+          <small>Bienes registrados</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+      <div class="stat-card">
+        <div class="stat-icon green">
+          <i class="bi bi-person-check"></i>
+        </div>
+        <div>
+          <span>Bienes asignados</span>
+          <h3>0</h3>
+          <small>En manos de funcionarios</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+      <div class="stat-card">
+        <div class="stat-icon orange">
+          <i class="bi bi-box-seam"></i>
+        </div>
+        <div>
+          <span>Disponibles</span>
+          <h3>0</h3>
+          <small>Sin asignación</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+      <div class="stat-card">
+        <div class="stat-icon red">
+          <i class="bi bi-tools"></i>
+        </div>
+        <div>
+          <span>En mantenimiento</span>
+          <h3>0</h3>
+          <small>Requieren seguimiento</small>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SECCIÓN CENTRAL -->
+  <div class="row g-3 mb-4">
+
+    <div class="col-lg-8">
+      <div class="panel-card">
+        <div class="panel-heading">
+          <div>
+            <h5>Inventario tecnológico</h5>
+            <p>Distribución de los bienes registrados</p>
+          </div>
+          <i class="bi bi-three-dots"></i>
+        </div>
+
+        <div class="empty-chart">
+          <i class="bi bi-bar-chart-line"></i>
+          <strong>Sin información disponible</strong>
+          <span>Los gráficos aparecerán cuando registres bienes.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="panel-card">
+        <div class="panel-heading">
+          <div>
+            <h5>Estado de los bienes</h5>
+            <p>Resumen del inventario</p>
+          </div>
+        </div>
+
+        <div class="status-summary">
+          <div class="status-row">
+            <span><i class="status-dot available"></i> Disponibles</span>
+            <strong>0</strong>
+          </div>
+
+          <div class="status-row">
+            <span><i class="status-dot assigned"></i> Asignados</span>
+            <strong>0</strong>
+          </div>
+
+          <div class="status-row">
+            <span><i class="status-dot maintenance"></i> Mantenimiento</span>
+            <strong>0</strong>
+          </div>
+
+          <div class="status-row">
+            <span><i class="status-dot retired"></i> Dados de baja</span>
+            <strong>0</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ACTIVIDAD RECIENTE -->
+  <div class="panel-card">
+    <div class="panel-heading">
+      <div>
+        <h5>Movimientos recientes</h5>
+        <p>Últimos registros y operaciones del sistema</p>
+      </div>
+
+      <a routerLink="/bienes">Ver bienes</a>
+    </div>
+
+    <div class="empty-activity">
+      <i class="bi bi-inbox"></i>
+      <p>Aún no hay movimientos registrados.</p>
+    </div>
+  </div>
+
+</div>

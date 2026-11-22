@@ -1,0 +1,19 @@
+# Node y Angular
+node_modules/
+dist/
+.angular/
+
+# .NET
+bin/
+obj/
+
+# Visual Studio
+.vs/
+
+# Configuración y secretos
+.env
+.env.*
+appsettings.Development.json
+
+# Logs
+*.log

@@ -1,0 +1,109 @@
+
+<div class="app-layout">
+
+  <!-- MENÚ LATERAL -->
+  <aside class="sidebar">
+
+    <div class="brand">
+      <div class="brand">
+        <img
+          src="images/escudo-nombre-bottom.png"
+          alt="Escudo de la Alcaldía de Circasia"
+          class="brand-logo"
+          >
+        <div>
+          <h5>ALCALDÍA DE CIRCASIA</h5>
+          <span>Gestión de activos tecnológicos</span>
+        </div>
+</div>
+    </div>
+
+    <div class="menu-label">MENÚ PRINCIPAL</div>
+
+    <nav class="nav-menu">
+
+      <a routerLink="/dashboard"
+         routerLinkActive="active"
+         class="nav-link">
+        <i class="bi bi-grid-1x2"></i>
+        <span>Dashboard</span>
+      </a>
+
+      <a routerLink="/bienes"
+         routerLinkActive="active"
+         class="nav-link">
+        <i class="bi bi-pc-display"></i>
+        <span>Bienes tecnológicos</span>
+      </a>
+
+      <a routerLink="/funcionarios"
+         routerLinkActive="active"
+         class="nav-link">
+        <i class="bi bi-people"></i>
+        <span>Funcionarios</span>
+      </a>
+
+      <a routerLink="/asignaciones"
+         routerLinkActive="active"
+         class="nav-link">
+        <i class="bi bi-arrow-left-right"></i>
+        <span>Asignaciones</span>
+      </a>
+
+      <a routerLink="/mantenimientos"
+         routerLinkActive="active"
+         class="nav-link">
+        <i class="bi bi-tools"></i>
+        <span>Mantenimientos</span>
+      </a>
+
+      <a routerLink="/reportes"
+         routerLinkActive="active"
+         class="nav-link">
+        <i class="bi bi-file-earmark-bar-graph"></i>
+        <span>Reportes</span>
+      </a>
+
+    </nav>
+
+    <div class="sidebar-footer">
+      <i class="bi bi-shield-check"></i>
+      <div>
+        <strong>Sistema institucional</strong>
+        <small>Control de activos</small>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- CONTENIDO -->
+  <main class="main-area">
+
+    <header class="topbar">
+      <div>
+        <span class="topbar-title">Sistema de gestión de activos</span>
+        <small>Administración de recursos tecnológicos</small>
+      </div>
+
+      <div class="user-area">
+        <button class="notification-button">
+          <i class="bi bi-bell"></i>
+        </button>
+
+        <div class="user-avatar">AD</div>
+
+        <div class="user-info">
+          <strong>Administrador</strong>
+          <small>Gestión institucional</small>
+        </div>
+      </div>
+    </header>
+
+    <section class="page-content">
+      <router-outlet />
+    </section>
+
+  </main>
+
+</div>
+

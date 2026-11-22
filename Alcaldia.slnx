@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="alcaldia.API/alcaldia.API.csproj" />
+  <Project Path="alcaldia.Application/alcaldia.Application.csproj" />
+  <Project Path="alcaldia.Domain/alcaldia.Domain.csproj" />
+  <Project Path="alcaldia.Infrastructure/alcaldia.Infrastructure.csproj" />
+</Solution>

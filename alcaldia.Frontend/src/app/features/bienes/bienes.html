@@ -1,0 +1,313 @@
+<div class="modulo-bienes">
+
+  <div class="encabezado">
+    <div>
+      <h2>Bienes tecnológicos</h2>
+      <p>Administración y control del inventario tecnológico institucional.</p>
+    </div>
+
+    <button class="btn-principal" (click)="abrirFormulario()">
+      <i class="bi bi-plus-lg"></i>
+      Registrar bien
+    </button>
+  </div>
+
+  <!-- Indicadores -->
+  <div class="indicadores">
+
+    <div class="indicador">
+      <div class="indicador-icono azul">
+        <i class="bi bi-pc-display"></i>
+      </div>
+      <div>
+        <span>Total de bienes</span>
+        <h3>{{ bienes.length }}</h3>
+      </div>
+    </div>
+
+    <div class="indicador">
+      <div class="indicador-icono verde">
+        <i class="bi bi-check-circle"></i>
+      </div>
+      <div>
+        <span>Disponibles</span>
+        <h3>{{ totalDisponibles }}</h3>
+      </div>
+    </div>
+
+    <div class="indicador">
+      <div class="indicador-icono morado">
+        <i class="bi bi-person-check"></i>
+      </div>
+      <div>
+        <span>Asignados</span>
+        <h3>{{ totalAsignados }}</h3>
+      </div>
+    </div>
+
+    <div class="indicador">
+      <div class="indicador-icono naranja">
+        <i class="bi bi-tools"></i>
+      </div>
+      <div>
+        <span>En mantenimiento</span>
+        <h3>{{ totalMantenimiento }}</h3>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Formulario -->
+  <div class="panel formulario-panel" *ngIf="mostrarFormulario">
+
+    <div class="panel-encabezado">
+      <div>
+        <h3>{{ editando ? 'Editar bien tecnológico' : 'Registrar nuevo bien' }}</h3>
+        <p>Completa la información del equipo.</p>
+      </div>
+
+      <button class="btn-cerrar" type="button" (click)="cancelarFormulario()">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+
+    <form #formBien="ngForm" (ngSubmit)="guardarBien()">
+
+      <div class="form-grid">
+
+        <div class="campo">
+          <label>Número de inventario *</label>
+          <input
+            type="text"
+            name="numeroInventario"
+            [(ngModel)]="nuevoBien.numeroInventario"
+            placeholder="Ej. INV-001"
+            required
+          >
+        </div>
+
+        <div class="campo">
+          <label>Número de serial *</label>
+          <input
+            type="text"
+            name="serial"
+            [(ngModel)]="nuevoBien.serial"
+            placeholder="Serial del fabricante"
+            required
+          >
+        </div>
+
+        <div class="campo">
+          <label>Tipo de bien *</label>
+          <select name="tipo" [(ngModel)]="nuevoBien.tipo" required>
+            <option value="">Seleccionar tipo</option>
+            <option value="Computador">Computador</option>
+            <option value="Portátil">Portátil</option>
+            <option value="Impresora">Impresora</option>
+            <option value="Monitor">Monitor</option>
+            <option value="Teclado">Teclado</option>
+            <option value="Mouse">Mouse</option>
+            <option value="Periférico">Otro periférico</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label>Marca *</label>
+          <input
+            type="text"
+            name="marca"
+            [(ngModel)]="nuevoBien.marca"
+            placeholder="Ej. HP, Dell, Lenovo"
+            required
+          >
+        </div>
+
+        <div class="campo">
+          <label>Modelo</label>
+          <input
+            type="text"
+            name="modelo"
+            [(ngModel)]="nuevoBien.modelo"
+            placeholder="Modelo del equipo"
+          >
+        </div>
+
+        <div class="campo">
+          <label>Estado *</label>
+          <select name="estado" [(ngModel)]="nuevoBien.estado" required>
+            <option value="Disponible">Disponible</option>
+            <option value="Asignado">Asignado</option>
+            <option value="En mantenimiento">En mantenimiento</option>
+            <option value="Dado de baja">Dado de baja</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label>Ubicación</label>
+          <input
+            type="text"
+            name="ubicacion"
+            [(ngModel)]="nuevoBien.ubicacion"
+            placeholder="Ej. Oficina de sistemas"
+          >
+        </div>
+
+        <div class="campo">
+          <label>Fecha de adquisición</label>
+          <input
+            type="date"
+            name="fechaAdquisicion"
+            [(ngModel)]="nuevoBien.fechaAdquisicion"
+          >
+        </div>
+
+        <div class="campo campo-completo">
+          <label>Observaciones</label>
+          <textarea
+            name="observaciones"
+            [(ngModel)]="nuevoBien.observaciones"
+            rows="3"
+            placeholder="Detalles adicionales del bien..."
+          ></textarea>
+        </div>
+
+      </div>
+
+      <div class="form-acciones">
+        <button
+          type="button"
+          class="btn-secundario"
+          (click)="cancelarFormulario()"
+        >
+          Cancelar
+        </button>
+
+        <button
+          type="submit"
+          class="btn-principal"
+          [disabled]="formBien.invalid"
+        >
+          <i class="bi bi-check-lg"></i>
+          {{ editando ? 'Guardar cambios' : 'Registrar bien' }}
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- Listado -->
+  <div class="panel listado-panel">
+
+    <div class="listado-encabezado">
+      <div>
+        <h3>Inventario institucional</h3>
+        <p>Consulta los bienes tecnológicos registrados.</p>
+      </div>
+    </div>
+
+    <div class="filtros">
+
+      <div class="buscador">
+        <i class="bi bi-search"></i>
+        <input
+          type="text"
+          [(ngModel)]="busqueda"
+          placeholder="Buscar por inventario, serial, marca o tipo..."
+        >
+      </div>
+
+      <select [(ngModel)]="filtroEstado" class="filtro-estado">
+        <option value="Todos">Todos los estados</option>
+        <option value="Disponible">Disponible</option>
+        <option value="Asignado">Asignado</option>
+        <option value="En mantenimiento">En mantenimiento</option>
+        <option value="Dado de baja">Dado de baja</option>
+      </select>
+
+    </div>
+
+    <div class="tabla-contenedor">
+
+      <table>
+        <thead>
+          <tr>
+            <th>N.º INVENTARIO</th>
+            <th>TIPO DE BIEN</th>
+            <th>MARCA / MODELO</th>
+            <th>SERIAL</th>
+            <th>UBICACIÓN</th>
+            <th>ESTADO</th>
+            <th>ACCIONES</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr *ngFor="let bien of bienesFiltrados">
+
+            <td>
+              <strong>{{ bien.numeroInventario }}</strong>
+            </td>
+
+            <td>{{ bien.tipo }}</td>
+
+            <td>
+              {{ bien.marca }}
+              <small class="modelo">{{ bien.modelo || 'Sin modelo' }}</small>
+            </td>
+
+            <td>{{ bien.serial }}</td>
+
+            <td>{{ bien.ubicacion || 'No definida' }}</td>
+
+            <td>
+              <span class="estado" [ngClass]="claseEstado(bien.estado)">
+                {{ bien.estado }}
+              </span>
+            </td>
+
+            <td>
+              <div class="acciones">
+                <button
+                  class="btn-accion editar"
+                  title="Editar"
+                  type="button"
+                  (click)="editarBien(bien)"
+                >
+                  <i class="bi bi-pencil"></i>
+                </button>
+
+                <button
+                  class="btn-accion eliminar"
+                  title="Eliminar"
+                  type="button"
+                  (click)="eliminarBien(bien.id)"
+                >
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </td>
+
+          </tr>
+
+          <tr *ngIf="bienesFiltrados.length === 0">
+            <td colspan="7" class="sin-registros">
+              <i class="bi bi-inbox"></i>
+              <strong>No se encontraron bienes tecnológicos</strong>
+              <span>Registra un nuevo bien o modifica los filtros de búsqueda.</span>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+
+    </div>
+
+    <div class="pie-tabla">
+      Mostrando {{ bienesFiltrados.length }} de {{ bienes.length }} bienes
+    </div>
+
+  </div>
+
+</div>
